@@ -223,7 +223,3 @@ write.csv(network_table, "cytoscape_network.csv", row.names = FALSE)
 ## Dependencies
 
 - R packages: `minfi`, `IlluminaHumanMethylationEPICanno.ilm10b4.hg19`, `IlluminaHumanMethylationEPICmanifest`, `FlowSorted.Blood.EPIC`, `GeneNet`.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
