@@ -186,12 +186,19 @@ top_probes <- order(probe_variance, decreasing = TRUE)[1:10000]
 
 # Subset the beta values to include only the top probes
 Beta2_subset <- Beta2[top_probes, ]
+
+probe_variance_2 <- rowVars(Beta2_subset)
+write.csv(probe_variance_2,"probe_variance_2.csv")  # to be entered as attribute in cytoscape (import file form table)
 ```
 
 ### Step 14: Perform GGM Analysis on the Subset of Beta Values
 ```r
 # Run the GGM function on the subset of beta values
 Pairs <- Get_GGM(Beta2_subset, "methylation_network_edges.rdata")
+
+#OR (for faster work):
+#load("methylation_network_edges.rdata")
+#Pairs=AllPairsSig
 ```
 
 ### Step 15: Export Network Results for Visualization in Cytoscape
@@ -206,6 +213,12 @@ network_table <- data.frame(
 
 # Save the network table to a CSV file for Cytoscape
 write.csv(network_table, "cytoscape_network.csv", row.names = FALSE)
+
+#dim(Pairs)
+#max_pval=max(network_table$P.Value)  #0.00026315
+#network_table_more_strc=network_table[which(network_table$P.Value<0.000000001), ]
+#write.csv(network_table_more_strc, "network_table_more_strc.csv", row.names = FALSE) import network form file in cytoscape   Note: better to use XlSX file
+
 ```
 
 ## Output Files
